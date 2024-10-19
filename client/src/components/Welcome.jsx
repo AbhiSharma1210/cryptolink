@@ -6,6 +6,7 @@ import { BsInfoCircle } from 'react-icons/bs';
 
 import { TransactionContext } from "../context/TransactionContext";
 import { Loader } from './'
+import { shortenAddress } from "../utils/shortenAddress";
 
 const commonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
@@ -49,14 +50,16 @@ const Welcome = () => {
                     <button
                         type="button"
                         onClick={connectWallet}
-                        className={`flex flex-row justify-center items-center my-5 p-3 rounded-full cursor-pointer ${currentAccount ? "bg-gray-500 cursor-not-allowed" : "bg-[#2952e3] hover:bg-[#2546bd]"
+                        className={`flex flex-row justify-center items-center my-5 p-3 rounded-full ${currentAccount ? "bg-gray-500" : "bg-[#2952e3] hover:bg-[#2546bd]"
                             }`}
+                        style={{ cursor: currentAccount ? "not-allowed" : "pointer" }}
                         disabled={!!currentAccount} // This returns a truthy boolean value 
                     >
                         <p className="text-white text-base font-semibold">
                             {currentAccount ? "Wallet Connected" : "Connect Wallet"}
                         </p>
                     </button>
+
                     <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
                         <div className={`rounded-tl-2xl ${commonStyles}`}>
                             Reliability
@@ -90,7 +93,7 @@ const Welcome = () => {
                             <div>
                                 {/* Address of the wallet that is connected */}
                                 <p className="text-white font-light text-sm">
-                                    Address of connected wallet
+                                    {shortenAddress(currentAccount)}
                                 </p>
                                 <p className="text-white font-semibold text-lg mt-1">
                                     Ethereum
