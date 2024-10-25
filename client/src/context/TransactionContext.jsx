@@ -42,7 +42,7 @@ export const TransactionsProvider = ({ children }) => {
             if (!ethereum) return alert("Please install metamask");
             const transactionsContract = await createEthereumContract();
             const availableTransactions = await transactionsContract.getAllTransactions();
-            console.log(availableTransactions)
+            // console.log(availableTransactions)
             const structuredTransactions = availableTransactions.map((transaction) => ({
                 addressTo: transaction.receiver,
                 addressFrom: transaction.from,
@@ -53,7 +53,7 @@ export const TransactionsProvider = ({ children }) => {
                 amount: Number(transaction[2]) / (10 ** 18)
             }));
 
-            console.log(structuredTransactions);
+            // console.log(structuredTransactions);
 
             setTransactions(structuredTransactions);
         } catch (error) {
@@ -126,7 +126,7 @@ export const TransactionsProvider = ({ children }) => {
             window.localStorage.setItem("transactionCount", transactionsCount);
         } catch (error) {
             console.log(error)
-            throw new Error("No ehtereum object.")
+            throw new Error("No ethereum object")
         }
     }
     const connectWallet = async () => {
@@ -140,7 +140,7 @@ export const TransactionsProvider = ({ children }) => {
         } catch (error) {
             console.log(error);
 
-            throw new Error("No ethereum object.")
+            throw new Error("No ethereum object")
         }
     }
 
@@ -150,7 +150,18 @@ export const TransactionsProvider = ({ children }) => {
     }, [])
 
     return (
-        <TransactionContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handleChange, sendTransaction }}>
+        <TransactionContext.Provider
+            value={{
+                transactionCount,
+                connectWallet,
+                transactions,
+                currentAccount,
+                isLoading,
+                sendTransaction,
+                handleChange,
+                formData,
+            }}
+        >
             {children}
         </TransactionContext.Provider>
     );
