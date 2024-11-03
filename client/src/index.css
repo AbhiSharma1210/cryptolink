@@ -85,12 +85,14 @@ body {
         width: 0;
     }
 
-    50% {
-        width: 100%;
+    60% {
+        width: 48ch;
+        /* The character count of your text */
     }
 
-    60% {
-        width: 100%;
+    80% {
+        width: 48ch;
+        /* Hold the full width here to create a pause */
     }
 
     100% {
@@ -115,12 +117,12 @@ body {
 .animate-typing {
     overflow: hidden;
     /* Ensures text is clipped */
-    border-right: 2px solid;
+    border-right: .15em solid white;
     /* Creates the cursor effect */
     white-space: nowrap;
     /* Keeps text on a single line */
     display: inline-block;
-    animation: typing 8s steps(79, end) infinite, blink 0.75s step-end infinite;
+    animation: typing 5s steps(48, end) infinite, blink 0.75s step-end infinite;
 }
 
 @tailwind base;

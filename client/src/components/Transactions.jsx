@@ -10,8 +10,8 @@ const Transactions = () => {
     return (
         <div className="flex w-full justify-center items-center gradient-bg-transactions">
             <div className="flex justify-center items-center p-4 w-full max-w-6xl">
-                <div className="w-full">
-                    <table className="w-full bg-gray-800 text-white rounded-lg overflow-hidden">
+                <div className="w-full overflow-x-auto"> {/* Added overflow-x-auto */}
+                    <table className="w-full bg-gray-800 text-white rounded-lg">
                         <thead>
                             <tr className="bg-gray-900 text-left">
                                 <th className="p-4">Transaction From</th>
@@ -22,7 +22,6 @@ const Transactions = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {/* Slice is used to create a new copy and then perform reverse() on it. */}
                             {transactions.slice().reverse().map((tx, index) => (
                                 <tr key={index} className="border-b border-gray-700">
                                     <td className="p-4">{shortenAddress(tx.addressFrom)}</td>
@@ -47,6 +46,7 @@ const Transactions = () => {
         </div>
     );
 };
+
 
 export default Transactions;
 
