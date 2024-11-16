@@ -137,6 +137,7 @@ export const TransactionsProvider = ({ children }) => {
 
             setCurrentAccount(accounts[0]);
             window.location.reload();
+            // Wallet connect should only show when user click on connect button.
             checkIfTransactionExists();
         } catch (error) {
             console.log(error);
@@ -147,7 +148,7 @@ export const TransactionsProvider = ({ children }) => {
 
     useEffect(() => {
         checkIfWalletIsConnected();
-        // checkIfTransactionExists();
+        // checkIfTransactionExists(); Added this to 140 - 
     }, [])
 
     return (
