@@ -137,6 +137,7 @@ export const TransactionsProvider = ({ children }) => {
 
             setCurrentAccount(accounts[0]);
             window.location.reload();
+            checkIfTransactionExists();
         } catch (error) {
             console.log(error);
 
@@ -146,7 +147,7 @@ export const TransactionsProvider = ({ children }) => {
 
     useEffect(() => {
         checkIfWalletIsConnected();
-        checkIfTransactionExists();
+        // checkIfTransactionExists();
     }, [])
 
     return (
